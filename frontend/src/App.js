@@ -1,18 +1,20 @@
 import './App.css';
-import { BrowserRouter, Route, Redirect, Routes } from 'react-router-dom'; 
-import {NavBar, Cart, Home, NotFound } from './components'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { NavBar, Cart, Home, NotFound } from './components'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <Routes>        
-          <Route path='/cart' compoenent={<Cart />} /> 
-          <Route path='/' exact component={<Home /> } />
-          <Redirect to='/not-found' />
-        </Routes>
-      </BrowserRouter> 
+        <Switch>
+          <Route  path="/cart" component={Cart}/>
+          <Route  path="/not-found" component={NotFound} />
+          <Route exact path="/" component={Home} />
+          <Redirect to="/not-found" /> 
+
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
