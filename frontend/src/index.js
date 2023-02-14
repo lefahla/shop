@@ -1,23 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 
 // Configure reduxStore
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import productsSlice from './features/productsSlice';
+import productsReducer, { productsFetch } from './features/productsSlice';
 const store = configureStore({
   reducer:{
-    product: productsSlice
+    product: productsReducer
   },
 });
+// Dispatch the new updated state
+store.dispatch(productsFetch(
+   
+));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App /> 
+      <App />
     </Provider>
- </React.StrictMode>
-);
+  </React.StrictMode>,
+  document.getElementById("root")
+ );
